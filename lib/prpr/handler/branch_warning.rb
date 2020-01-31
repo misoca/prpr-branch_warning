@@ -1,11 +1,7 @@
 module Prpr
   module Handler
     class BranchWarning < Base
-      handle Event::PullRequest, action: /opened/ do
-        Prpr::Action::BranchWarning::AddLabel.new(event).call
-      end
-
-      handle Event::PullRequest, action: /edited/ do
+      handle Event::PullRequest, action: /opened|edited/ do
         Prpr::Action::BranchWarning::AddLabel.new(event).call
       end
     end
